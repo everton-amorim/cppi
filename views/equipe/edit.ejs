@@ -1,0 +1,71 @@
+<%- include ../layouts/header.ejs %>
+
+        <div class="page-data">
+            
+            <form method="post" action="/equipes/edit/<%=data[0].id%>">
+                <table cellpadding="11">
+                <tr>
+                    <td class="label">Nome</td><td>: <input type="text" name="name" value="<%=data[0].nome%>" required></td>
+                 </tr>
+                <tr>
+                    <td class="label">Estado</td><td>: <input type="text" value="<%=data[0].estado%>" name="estado" required></td>
+                 </tr>
+                 <tr>
+                    <td class="label"></td>
+                    <td>
+                        &nbsp; <input type="submit" name="submit" value="Salvar">
+                       <input type="button" name="cancel" value="Voltar" class="cancel" onClick="cancelAdd('equipes')">
+                    </td>
+                 </tr>
+                </table>
+            </form>
+            
+        </div>
+
+<div class="page-data">
+    <div class="data-btn">
+        <button onClick="add('atletas',<%=data[0].id%>);">+ Novo</button>
+    </div>
+    <div class="data-table">
+        <table class="table table-striped">
+            <tr>
+                <th width="50px">No</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Equipe</th>
+                <th width="120px"></th>
+            </tr>
+
+            <% if(data.atletas){
+
+                var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+
+            for(var i = 0;i < data.atletas.length;i++) { %>
+
+            <tr>
+                <td><%=data.atletas[i].id%></td>
+                <td><%=data.atletas[i].nome%></td>
+                <td><%=options[data.atletas[i].categoria]%></td>
+                <td><%=data.atletas[i].nome_equipe%></td>
+                <td>
+                    <a class="a-inside edit" href="/atletas/edit/<%=data.atletas[i].id%>">Editar</a>
+
+                    <a class="a-inside delete" href="/atletas/delete/<%=data.atletas[i].id%>/<%=data.atletas[i].equipe_id%>">Excluir</a>
+
+                </td>
+            </tr>
+            <% }
+
+            }else{ %>
+            <tr>
+                <td colspan="6">Sem Atletas</td>
+            </tr>
+            <% } %>
+
+
+
+        </table>
+    </div>
+</div>
+        
+<%- include ../layouts/footer.ejs %>

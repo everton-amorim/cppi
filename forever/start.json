@@ -1,0 +1,9 @@
+{
+  // Comments are supported
+  "uid": "CPPI",
+  "append": true,
+  "watch": false,
+  "script": "bin/www",
+  "sourceDir": "/opt/cppi",
+  "logFile": "/opt/cppi/output.log"
+}

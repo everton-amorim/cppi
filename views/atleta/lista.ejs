@@ -1,0 +1,38 @@
+<%- include ../layouts/header.ejs %>
+<div class="page-data">
+    <div class="data-table">
+        <table class="table table-striped">
+            <tr>
+                <th>Nº</th>
+                <th>Categoria</th>
+                <th>Equipe</th>
+                <th>Nome</th>
+            </tr>
+
+            <% if(data){
+
+                var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+
+            for(var i = 0;i < data.length;i++) { %>
+
+            <tr>
+                <td><%=data[i].id%></td>
+                <td><%=options[data[i].categoria]%></td>
+                <td><%=data[i].nome_equipe%></td>
+                <td><%=data[i].nome%></td>
+            </tr>
+            <% }
+
+            }else{ %>
+            <tr>
+                <td colspan="3">Sem Atletas</td>
+            </tr>
+            <% } %>
+
+
+
+        </table>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

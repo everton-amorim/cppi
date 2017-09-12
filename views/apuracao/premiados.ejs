@@ -1,0 +1,614 @@
+<%- include ../layouts/header.ejs %>
+<%  var categorias = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"],
+        categoriasCores = ["DCDCDC","EE82EE","87CEFA","F0E68C","7FFFD4","FF6347"];
+        categoriasPosicao = [1,1,1,1,1,1],
+        categoriaV = { masculino :{value :0},
+            feminino :{value :1},
+            master :{value :2},
+            senior :{value :3},
+            juvenil :{value :4},
+            incentivado :{value :5}};
+%>
+
+<div class="page-data">
+    <h1>Premiados</h1>
+
+    <h2>Premiados Lançamento Limitado - Maiores Médias</h2>
+
+    <h4>Classificação Individual - Incentivado</h4>
+
+    <div class="data-table">
+        <%
+            let incentivado = data.lancamento[categoriaV.incentivado.value][0]; //incentivado
+            console.log(incentivado);
+        %>
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th style="width:50;">Colocação</th>
+                <th>Equipe</th>
+                <th>Nome</th>
+                <th>Média dos Lances</th>
+            </tr>
+            <%
+            for(var i = incentivado.length-1;i >=0;i--) {
+            %>
+
+                <tr>
+                    <td><%=((i+1)>3)?'Participação':(i+1)%>º</td>
+                    <td><%=incentivado[i].nome_equipe%></td>
+                    <td id="title"><%=incentivado[i].nome_atleta%></td>
+                    <td><%=((incentivado[i].lance_1 + incentivado[i].lance_2 + incentivado[i].lance_3)/3).toFixed(2)%></td>
+                </tr>
+            <%}%>
+        </table>
+    </div>
+
+    <h3>Campeões Individuais Lançamento Limitado - Maiores Médias</h3>
+    <div class="data-table">
+        <%
+        let row = data.lancamento[categoriaV.juvenil.value]; //juvenil
+        %>
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th>Categoria</th>
+                <th>Equipe</th>
+                <th>Nome</th>
+                <th>Média dos Lances</th>
+            </tr>
+            <tr>
+                <td>Juvenil</td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=((row.lance_1 + row.lance_2 + row.lance_3)/3).toFixed(2)%></td>
+            </tr>
+
+        <%
+        row = data.lancamento[categoriaV.feminino.value]; //feminino
+        %>
+            <tr>
+                <td>Feminino</td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=((row.lance_1 + row.lance_2 + row.lance_3)/3).toFixed(2)%></td>
+            </tr>
+
+        <%
+        row = data.lancamento[categoriaV.senior.value]; //senior
+        %>
+
+            <tr>
+                <td>Sênior</td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=((row.lance_1 + row.lance_2 + row.lance_3)/3).toFixed(2)%></td>
+            </tr>
+
+        <%
+        row = data.lancamento[categoriaV.master.value]; //master
+        %>
+            <tr>
+                <td>Máster</td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=((row.lance_1 + row.lance_2 + row.lance_3)/3).toFixed(2)%></td>
+            </tr>
+        <%
+        row = data.lancamento[categoriaV.masculino.value]; //masculino
+        %>
+            <tr>
+                <td>Masculino</td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=((row.lance_1 + row.lance_2 + row.lance_3)/3).toFixed(2)%></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <h2>Premiados Lançamento Limitado - Maiores Lances</h2>
+
+    <div class="data-table">
+        <%
+        row = data.maioresTiros;
+        %>
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th>Categoria</th>
+                <th>Equipe</th>
+                <th>Nome</th>
+                <th>Maior Lance</th>
+            </tr>
+            <%
+             let item = row[categoriaV.juvenil.value];
+            %>
+            <tr>
+                <td><%=categorias[item.categoria]%></td>
+                <td><%=item.nome_equipe%></td>
+                <td id="title"><%=item.nome_atleta%></td>
+                <td><%=Math.max(item.lance_1,item.lance_2,item.lance_3 )%></td>
+            </tr>
+
+            <%
+            item = row[categoriaV.feminino.value];
+            %>
+            <tr>
+                <td><%=categorias[item.categoria]%></td>
+                <td><%=item.nome_equipe%></td>
+                <td id="title"><%=item.nome_atleta%></td>
+                <td><%=Math.max(item.lance_1,item.lance_2,item.lance_3 )%></td>
+            </tr>
+
+            <%
+            item = row[categoriaV.senior.value];
+            %>
+            <tr>
+                <td><%=categorias[item.categoria]%></td>
+                <td><%=item.nome_equipe%></td>
+                <td id="title"><%=item.nome_atleta%></td>
+                <td><%=Math.max(item.lance_1,item.lance_2,item.lance_3 )%></td>
+            </tr>
+
+            <%
+            item = row[categoriaV.master.value];
+            %>
+            <tr>
+                <td><%=categorias[item.categoria]%></td>
+                <td><%=item.nome_equipe%></td>
+                <td id="title"><%=item.nome_atleta%></td>
+                <td><%=Math.max(item.lance_1,item.lance_2,item.lance_3 )%></td>
+            </tr>
+
+            <%
+            item = row[categoriaV.masculino.value];
+            %>
+            <tr>
+                <td><%=categorias[item.categoria]%></td>
+                <td><%=item.nome_equipe%></td>
+                <td id="title"><%=item.nome_atleta%></td>
+                <td><%=Math.max(item.lance_1,item.lance_2,item.lance_3 )%></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <h2>Premiados Pesca</h2>
+
+    <h3>Campeões Individuais Pesca Variada</h3>
+    <div class="data-table">
+        <%
+        row = data.variada[categoriaV.juvenil.value];
+        %>
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Categoria</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="3">Variada</th>
+            </tr>
+            <tr>
+                <th>Peças</th>
+                <th>Peso</th>
+                <th>Pontos</th>
+            </tr>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_variada)%></td>
+                <td><%=(row.peso_total_variada)%></td>
+                <td><%=((row.total_pecas_variada *2) + Math.ceil(row.peso_total_variada/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.variada[categoriaV.feminino.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_variada)%></td>
+                <td><%=(row.peso_total_variada)%></td>
+                <td><%=((row.total_pecas_variada *2) + Math.ceil(row.peso_total_variada/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.variada[categoriaV.senior.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_variada)%></td>
+                <td><%=(row.peso_total_variada)%></td>
+                <td><%=((row.total_pecas_variada *2) + Math.ceil(row.peso_total_variada/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.variada[categoriaV.master.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_variada)%></td>
+                <td><%=(row.peso_total_variada)%></td>
+                <td><%=((row.total_pecas_variada *2) + Math.ceil(row.peso_total_variada/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.variada[categoriaV.masculino.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_variada)%></td>
+                <td><%=(row.peso_total_variada)%></td>
+                <td><%=((row.total_pecas_variada *2) + Math.ceil(row.peso_total_variada/1000 * 10))%></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <h3>Campeões Individuais Pesca Específica</h3>
+    <div class="data-table">
+        <%
+        row = data.especifica[categoriaV.juvenil.value];
+        %>
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Categoria</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="3">Variada</th>
+            </tr>
+            <tr>
+                <th>Peças</th>
+                <th>Peso</th>
+                <th>Pontos</th>
+            </tr>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_especifica)%></td>
+                <td><%=(row.peso_total_especifica)%></td>
+                <td><%=((row.total_pecas_especifica *2) + Math.ceil(row.peso_total_especifica/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.especifica[categoriaV.feminino.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_especifica)%></td>
+                <td><%=(row.peso_total_especifica)%></td>
+                <td><%=((row.total_pecas_especifica *2) + Math.ceil(row.peso_total_especifica/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.especifica[categoriaV.senior.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_especifica)%></td>
+                <td><%=(row.peso_total_especifica)%></td>
+                <td><%=((row.total_pecas_especifica *2) + Math.ceil(row.peso_total_especifica/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.especifica[categoriaV.master.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_especifica)%></td>
+                <td><%=(row.peso_total_especifica)%></td>
+                <td><%=((row.total_pecas_especifica *2) + Math.ceil(row.peso_total_especifica/1000 * 10))%></td>
+            </tr>
+        <%
+        row = data.especifica[categoriaV.masculino.value];
+        %>
+            <tr>
+                <td><%=categorias[row.categoria]%></td>
+                <td><%=row.nome_equipe%></td>
+                <td id="title"><%=row.nome_atleta%></td>
+                <td><%=(row.total_pecas_especifica)%></td>
+                <td><%=(row.peso_total_especifica)%></td>
+                <td><%=((row.total_pecas_especifica *2) + Math.ceil(row.peso_total_especifica/1000 * 10))%></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <h2>Maior Peça</h2>
+
+    <div class="data-table">
+        <%
+        row = data.peixePesado;
+        %>
+
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th>Categoria</th>
+                <th>Equipe</th>
+                <th>Nome</th>
+                <th colspan="2">Peça</th>
+            </tr>
+            <%
+            for(var i = 0;i < row.length;i++) {
+            %>
+            <tr>
+                <td><%=categorias[row[i].categoria]%></td>
+                <td><%=row[i].nome_equipe%></td>
+                <td id="title"><%=row[i].nome_atleta%></td>
+                <td><%=((row[i].maior_peca_variada>row[i].maior_peca_especifica)?row[i].maior_peca_variada:row[i].maior_peca_especifica)%></td>
+                <td><input type="text" style="width: 400"/></td>
+
+            </tr>
+            <%}%>
+        </table>
+    </div>
+    <br>
+
+    <%
+    var posicaoGeral = 1;
+    %>
+
+    <h2>Classificação Final Individual</h2>
+
+    <h4>Juvenil</h4>
+
+    <div class="data-table">
+        <%  var rowGeral = data.geralJuvenil;
+        %>
+
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Colocação Geral</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="2">Lançamento</th>
+                <th colspan="2">Variada</th>
+                <th colspan="2">Específica</th>
+                <th rowspan="2">Final</th>
+            </tr>
+            <tr>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+            </tr>
+        <%
+        for (let i=rowGeral.length;i>=0;i--) {
+            if (rowGeral[i]) {%>
+            <tr style='background-color:#<%=categoriasCores[rowGeral[i].categoria]%>'>
+                <td align="center"><%=i+1%>&#176;</td>
+                <td><%=rowGeral[i].nome_equipe%></td>
+                <td id="title"><%=rowGeral[i].nome_atleta%></td>
+                <td align="center"><%=rowGeral[i].posicao_lancamento%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_lancamento%></td>
+                <td align="center"><%=rowGeral[i].posicao_variada%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_variada%></td>
+                <td align="center"><%=rowGeral[i].posicao_especifica%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_especifica%></td>
+                <td><%=rowGeral[i].total_cosapyl%></td>
+            </tr>
+            <%} }%>
+        </table>
+    </div>
+
+    <h4>Feminino</h4>
+
+    <div class="data-table">
+        <%  var rowGeral = data.geralFeminino;
+        %>
+
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Colocação Geral</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="2">Lançamento</th>
+                <th colspan="2">Variada</th>
+                <th colspan="2">Específica</th>
+                <th rowspan="2">Final</th>
+            </tr>
+            <tr>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+            </tr>
+            <%
+            for (let i=rowGeral.length;i>=0;i--) {
+            if (rowGeral[i]) {%>
+            <tr style='background-color:#<%=categoriasCores[rowGeral[i].categoria]%>'>
+                <td align="center"><%=i+1%>&#176;</td>
+                <td><%=rowGeral[i].nome_equipe%></td>
+                <td id="title"><%=rowGeral[i].nome_atleta%></td>
+                <td align="center"><%=rowGeral[i].posicao_lancamento%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_lancamento%></td>
+                <td align="center"><%=rowGeral[i].posicao_variada%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_variada%></td>
+                <td align="center"><%=rowGeral[i].posicao_especifica%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_especifica%></td>
+                <td><%=rowGeral[i].total_cosapyl%></td>
+            </tr>
+            <%} }%>
+        </table>
+    </div>
+
+    <h4>Sênior</h4>
+
+    <div class="data-table">
+        <%  var rowGeral = data.geralSenior;
+        %>
+
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Colocação Geral</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="2">Lançamento</th>
+                <th colspan="2">Variada</th>
+                <th colspan="2">Específica</th>
+                <th rowspan="2">Final</th>
+            </tr>
+            <tr>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+            </tr>
+            <%
+            for (let i=rowGeral.length;i>=0;i--) {
+            if (rowGeral[i]) {%>
+            <tr style='background-color:#<%=categoriasCores[rowGeral[i].categoria]%>'>
+                <td align="center"><%=i+1%>&#176;</td>
+                <td><%=rowGeral[i].nome_equipe%></td>
+                <td id="title"><%=rowGeral[i].nome_atleta%></td>
+                <td align="center"><%=rowGeral[i].posicao_lancamento%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_lancamento%></td>
+                <td align="center"><%=rowGeral[i].posicao_variada%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_variada%></td>
+                <td align="center"><%=rowGeral[i].posicao_especifica%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_especifica%></td>
+                <td><%=rowGeral[i].total_cosapyl%></td>
+            </tr>
+            <%} }%>
+        </table>
+    </div>
+
+    <h4>Máster</h4>
+
+    <div class="data-table">
+        <%  var rowGeral = data.geralMaster;
+        %>
+
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Colocação Geral</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="2">Lançamento</th>
+                <th colspan="2">Variada</th>
+                <th colspan="2">Específica</th>
+                <th rowspan="2">Final</th>
+            </tr>
+            <tr>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+            </tr>
+            <%
+            for (let i=rowGeral.length;i>=0;i--) {
+            if (rowGeral[i]) {%>
+            <tr style='background-color:#<%=categoriasCores[rowGeral[i].categoria]%>'>
+                <td align="center"><%=i+1%>&#176;</td>
+                <td><%=rowGeral[i].nome_equipe%></td>
+                <td id="title"><%=rowGeral[i].nome_atleta%></td>
+                <td align="center"><%=rowGeral[i].posicao_lancamento%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_lancamento%></td>
+                <td align="center"><%=rowGeral[i].posicao_variada%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_variada%></td>
+                <td align="center"><%=rowGeral[i].posicao_especifica%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_especifica%></td>
+                <td><%=rowGeral[i].total_cosapyl%></td>
+            </tr>
+            <%} }%>
+        </table>
+    </div>
+
+    <h4>Masculino</h4>
+
+    <div class="data-table">
+        <%  var rowGeral = data.geralMasculino;
+        %>
+
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Colocação Geral</th>
+                <th rowspan="2">Equipe</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="2">Lançamento</th>
+                <th colspan="2">Variada</th>
+                <th colspan="2">Específica</th>
+                <th rowspan="2">Final</th>
+            </tr>
+            <tr>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+                <th>Colocação</th>
+                <th>Cosapyl</th>
+            </tr>
+            <%
+            for (let i=rowGeral.length;i>=0;i--) {
+            if (rowGeral[i]) {%>
+            <tr style='background-color:#<%=categoriasCores[rowGeral[i].categoria]%>'>
+                <td align="center"><%=i+1%>&#176;</td>
+                <td><%=rowGeral[i].nome_equipe%></td>
+                <td id="title"><%=rowGeral[i].nome_atleta%></td>
+                <td align="center"><%=rowGeral[i].posicao_lancamento%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_lancamento%></td>
+                <td align="center"><%=rowGeral[i].posicao_variada%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_variada%></td>
+                <td align="center"><%=rowGeral[i].posicao_especifica%>&#176;</td>
+                <td><%=rowGeral[i].cosapyl_especifica%></td>
+                <td><%=rowGeral[i].total_cosapyl%></td>
+            </tr>
+            <%} }%>
+        </table>
+    </div>
+    <br>
+
+    <h2>Classificação Final por Equipe</h2>
+    <div class="data-table">
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+            <tr>
+                <th rowspan="2">Posição</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="5">Pontos</th>
+                <th rowspan="2">Total Cosapyl</th>
+            </tr>
+            <tr>
+                <th>Masculino</th>
+                <th>Feminino</th>
+                <th>Master</th>
+                <th>Sênior</th>
+                <th>Juvenil</th>
+            </tr>
+
+            <% if(data.equipes.length){
+
+            for(var i = data.equipes.length-1;i >=0 ;i--) { %>
+
+            <tr>
+                <td><%=(i+1)%>&#176;</td>
+                <td><%=data.equipes[i].nome%></td>
+                <td><%=data.equipes[i].pontos_masculino%></td>
+                <td><%=data.equipes[i].pontos_feminino%></td>
+                <td><%=data.equipes[i].pontos_master%></td>
+                <td><%=data.equipes[i].pontos_senior%></td>
+                <td><%=data.equipes[i].pontos_juvenil%></td>
+                <td><%=data.equipes[i].pontos_total%></td>
+            </tr>
+            <% }
+
+            }%>
+        </table>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

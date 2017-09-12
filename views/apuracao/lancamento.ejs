@@ -1,0 +1,56 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header2">
+            <small>Apuração da prova de lançamento</small>
+        </h1>
+    </div>
+</div>
+<div class="page-data">
+    <div class="data-table">
+        <table class="table table-striped" style="width: 1000px">
+            <thead>
+                <tr>
+                    <th>Sorteio</th>
+                    <th>Categoria</th>
+                    <th>Equipe</th>
+                    <th>Nome</th>
+                    <th>1º Lance</th>
+                    <th>2º Lance</th>
+                    <th>3º Lance</th>
+                    <th>Soma</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% if(data){
+
+                    var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+
+                for(var i = 0;i < data.length;i++) { %>
+
+                <tr>
+                    <td><%=data[i].sorteio_lancamento%></td>
+                    <td><%=options[data[i].categoria]%></td>
+                    <td><%=data[i].nome_equipe%></td>
+                    <td><%=(data[i].nome)%></td>
+                    <td><input type="text" style="width: 100px;" id="lance_1_<%=data[i].id%>" value="<%=data[i].lance_1_real%>" onchange="registro_valor('lance_1_real',document.getElementById('lance_1_<%=data[i].id%>').value,<%=data[i].id%>);registro_valor('lance_1',(isNaN(document.getElementById('lance_1_<%=data[i].id%>').value)?0:document.getElementById('lance_1_<%=data[i].id%>').value),<%=data[i].id%>);calculaTotalLance(<%=data[i].id%>);"></td>
+                    <td><input type="text" style="width: 100px;" id="lance_2_<%=data[i].id%>" value="<%=data[i].lance_2_real%>" onchange="registro_valor('lance_2_real',document.getElementById('lance_2_<%=data[i].id%>').value,<%=data[i].id%>);registro_valor('lance_2',(isNaN(document.getElementById('lance_2_<%=data[i].id%>').value)?0:document.getElementById('lance_2_<%=data[i].id%>').value),<%=data[i].id%>);calculaTotalLance(<%=data[i].id%>);"></td>
+                    <td><input type="text" style="width: 100px;" id="lance_3_<%=data[i].id%>" value="<%=data[i].lance_3_real%>" onchange="registro_valor('lance_3_real',document.getElementById('lance_3_<%=data[i].id%>').value,<%=data[i].id%>);registro_valor('lance_3',(isNaN(document.getElementById('lance_3_<%=data[i].id%>').value)?0:document.getElementById('lance_3_<%=data[i].id%>').value),<%=data[i].id%>);calculaTotalLance(<%=data[i].id%>);"></td>
+                    <td><input type="text" readonly="true" style="width: 100px;" id="total_lance_<%=data[i].id%>" value="<%=(data[i].lance_1 + data[i].lance_2+ data[i].lance_3).toFixed(2)%>"></td>
+                </tr>
+                <% }
+
+                }else{ %>
+                <tr>
+                    <td colspan="6">Sem Atletas</td>
+                </tr>
+                <% } %>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

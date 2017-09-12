@@ -1,0 +1,56 @@
+<%- include ../layouts/header.ejs %>
+
+        <div class="page-data">
+            
+            <form method="post" action="/atletas/edit/<%=data[0].id%>">
+                <table cellpadding="11">
+                <tr>
+                    <td class="label">Nome</td><td>: <input type="text" name="nome" value="<%=data[0].nome%>" required></td>
+                 </tr>
+                 <!--<tr>
+                    <td class="label" valign="top">Endereço</td>
+                    <td valign="top">: 
+                        <textarea name="endereco" required cols="30" rows="5"><%=data[0].endereco%></textarea>
+                    </td>
+                </tr>-->
+                    <tr>
+                        <td class="label">Categoria</td><td>:
+                            <select id="categoria" name="categoria">
+
+                                <%
+                                    var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+
+                                for ( var i = 0; i < options.length; i++ )
+                                {
+                                    var selected = ( i == data[0].categoria ) ? "selected" : "";
+                                %><option value="<%=i%>" <%=selected %>><%=options[i] %></option><%
+                                }
+                                %>
+                            </select>
+                    </tr>
+                    <tr>
+                        <td class="label">Equipe</td><td>:
+                            <select id="equipe_id" name="equipe_id">
+
+                                <%
+                                for ( var i = 0; i < data.equipes.length; i++ )
+                                {
+                                    var selected = ( data.equipes[i].id == data[0].equipe_id ) ? "selected" : "";
+                                %><option value="<%=data.equipes[i].id %>" <%=selected %>><%=data.equipes[i].nome %></option><%
+                                }
+                                %>
+                            </select>
+                    </tr>
+                 <tr>
+                    <td class="label"></td>
+                    <td>
+                        <input type="submit" name="submit" value="Save">
+                        <input type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAdd('equipes/edit/<%=data[0].equipe_id%>')">
+                    </td>
+                 </tr>
+                </table>
+            </form>
+            
+        </div>
+        
+<%- include ../layouts/footer.ejs %>

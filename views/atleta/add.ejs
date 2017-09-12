@@ -1,0 +1,32 @@
+<%- include ../layouts/header.ejs %>
+
+        <div class="page-data">
+
+            <form method="post" action="/atletas/add">
+                <input type="hidden" name="equipe_id" value="<%=equipeId%>">
+                <fieldset class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome do atleta" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select class="form-control" id="categoria" name="categoria">
+
+                        <%
+                        var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+
+                        for ( var i = 0; i < options.length; i++ )
+                        {
+                            var selected = "";
+                        %><option value="<%=i%>" <%=selected %>><%=options[i] %></option><%
+                        }
+                        %>
+                    </select>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <input type="button" name="cancel" value="Cancelar" class="btn" onClick="cancelAdd('equipes/edit/<%=equipeId%>')">
+            </form>
+            
+        </div>
+        
+<%- include ../layouts/footer.ejs %>

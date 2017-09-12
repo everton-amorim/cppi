@@ -1,0 +1,46 @@
+<%- include ../layouts/header.ejs %>
+<div class="page-data">
+    <div class="data-btn">
+        <button onClick="add('equipes');">+ Novo</button>
+    </div>
+    <div class="data-table">
+        <table class="table table-striped">
+            <tr>
+                <!--<th width="50px">No</th>
+                <th>Id</th>-->
+                <th>Nome</th>
+                <th>Estado</th>
+                <th width="120px"></th>
+            </tr>
+
+            <% if(data.length){
+
+            for(var i = 0;i < data.length;i++) { %>
+
+            <tr>
+                <!--<td><%=(i+1)%></td>
+                <td><%=data[i].id%></td>-->
+                <td><%=data[i].nome%></td>
+                <td><%=data[i].estado%></td>
+                <td>
+                    <a class="a-inside edit" href="../equipes/edit/<%=data[i].id%>">Atletas</a>
+
+                    <a class="a-inside delete" href="../equipes/delete/<%=data[i].id%>">Delete</a>
+
+                </td>
+            </tr>
+            <% }
+
+            }else{ %>
+            <tr>
+                <td colspan="4">Sem equipes</td>
+            </tr>
+            <% } %>
+
+
+
+        </table>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

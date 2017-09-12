@@ -1,0 +1,25 @@
+{
+  "name": "pirates",
+  "description": "pirates",
+  "main": "",
+  "authors": [
+    "Everton Amorim <everton@evertonamorim.com.br>"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.11.2",
+    "jquery": "^2.2.0",
+    "bootstrap": "^3.3.6"
+  }
+}

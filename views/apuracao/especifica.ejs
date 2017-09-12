@@ -1,0 +1,58 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header2">
+            <small>Apuração da prova de Pesca Específica</small>
+        </h1>
+    </div>
+</div>
+<div class="page-data">
+    <div class="data-table">
+        <table class="table table-striped" style="width: 1500px">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Nº</th>
+                    <th>Equipe</th>
+                    <th>Atleta</th>
+                    <th>Nº Peças</th>
+                    <th>Peso Total</th>
+                    <th>Maior Peça</th>
+                    <th>Pontos</th>
+                    <!--<th>Nome do Peixe</th>-->
+                </tr>
+            </thead>
+            <tbody>
+
+                <% if(data){
+
+                    var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+
+                for(var i = 0;i < data.length;i++) { %>
+
+                <tr>
+                    <td><%=options[data[i].categoria]%></td>
+                    <td><%=data[i].atleta_id%></td>
+                    <td><%=data[i].nome_equipe%></td>
+                    <td><%=data[i].nome%></td>
+                    <td><input type="text" style="width: 100px" id="total_pecas_especifica_<%=data[i].id%>" value="<%=data[i].total_pecas_especifica%>" onchange="registro_valor('total_pecas_especifica',document.getElementById('total_pecas_especifica_<%=data[i].id%>').value,<%=data[i].id%>);calculaPontos(document.getElementById('total_pecas_especifica_<%=data[i].id%>').value,document.getElementById('peso_total_especifica_<%=data[i].id%>').value,'pontos<%=data[i].id%>');"></td>
+                    <td><input type="text" style="width: 100px" id="peso_total_especifica_<%=data[i].id%>" value="<%=data[i].peso_total_especifica%>" onchange="registro_valor('peso_total_especifica',document.getElementById('peso_total_especifica_<%=data[i].id%>').value,<%=data[i].id%>);calculaPontos(document.getElementById('total_pecas_especifica_<%=data[i].id%>').value,document.getElementById('peso_total_especifica_<%=data[i].id%>').value,'pontos<%=data[i].id%>');"></td>
+                    <td><input type="text" style="width: 100px" id="maior_peca_especifica_<%=data[i].id%>" value="<%=data[i].maior_peca_especifica%>" onchange="registro_valor('maior_peca_especifica',document.getElementById('maior_peca_especifica_<%=data[i].id%>').value,<%=data[i].id%>)"></td>
+                    <td><input type="text" style="width: 100px" readonly="true" id="pontos<%=data[i].id%>" value="<%=((data[i].total_pecas_especifica*2)+Math.ceil(data[i].peso_total_especifica/1000 * 10)).toFixed(0)%>"></td>
+                    <!--<td><input type="text" id="nome_maior_peca_especifica_<%=data[i].id%>" value="<%=data[i].nome_maior_peca_especifica%>" onchange="registro_valor('nome_maior_peca_especifica',document.getElementById('nome_maior_peca_especifica_<%=data[i].id%>').value,<%=data[i].id%>)"></td>-->
+                </tr>
+                <% }
+
+                }else{ %>
+                <tr>
+                    <td colspan="6">Sem Atletas</td>
+                </tr>
+                <% } %>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

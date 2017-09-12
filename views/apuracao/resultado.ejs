@@ -1,0 +1,143 @@
+<%- include ../layouts/header.ejs %>
+<%  var categorias = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+    var categoriaAnterior = -1;
+    var posicaoGeral = 1;
+%>
+
+<div class="page-data">
+    <h1>Classificação por Equipe</h1>
+
+    <div class="data-table">
+        <table border="1" cellpadding="7" cellspacing="7" class="table table-striped" style="width: 400">
+            <tr>
+                <th rowspan="2" style="width: 10">Pos</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="5">Pontos</th>
+                <th rowspan="2" style="width: 30">Total</th>
+            </tr>
+            <tr>
+                <th >Masculino</th>
+                <th>Feminino</th>
+                <th>Master</th>
+                <th>Sênior</th>
+                <th>Juvenil</th>
+            </tr>
+
+            <% if(data.equipes.length){
+
+            for(var i = 0;i < data.equipes.length;i++) { %>
+
+            <tr>
+                <td><%=(i+1)%>&#176;</td>
+                <td><%=data.equipes[i].nome%></td>
+                <td><%=data.equipes[i].pontos_masculino%></td>
+                <td><%=data.equipes[i].pontos_feminino%></td>
+                <td><%=data.equipes[i].pontos_master%></td>
+                <td><%=data.equipes[i].pontos_senior%></td>
+                <td><%=data.equipes[i].pontos_juvenil%></td>
+                <td><%=data.equipes[i].pontos_total%></td>
+            </tr>
+            <% }
+
+            }%>
+
+        </table>
+    </div>
+
+    <br>
+    <h1>Classificação Geral Individual</h1>
+    <div class="data-table">
+        <%if (data && data.length)
+            for(var i = 0;i < data.length;i++) {
+
+            if (data[i].categoria != categoriaAnterior) { %>
+                <br>
+                <h1><%=categorias[data[i].categoria]%></h1>
+
+                <table border="1" cellpadding="7" cellspacing="7" class="table table-striped">
+                    <tr>
+                        <th rowspan="2" width="10">Pos</th>
+                        <th rowspan="2">Equipe</th>
+                        <th rowspan="2" width="10">Nº</th>
+                        <th rowspan="2">Nome</th>
+                        <th colspan="6">Lançamento</th>
+                        <% if (data[i].categoria != 5) {%>
+                        <th colspan="5">Variada</th>
+                        <th colspan="5">Específica</th>
+                        <th rowspan="2">Final</th>
+                        <%}%>
+                    </tr>
+                    <tr>
+                        <th>L 1</th>
+                        <th>L 2</th>
+                        <th>L 3</th>
+                        <th>Total</th>
+                        <th width="10">Pos</th>
+                        <th>Cosapyl</th>
+
+                        <% if (data[i].categoria != 5) {%>
+                        <th>Pçs</th>
+                        <th>Peso</th>
+                        <th>Maior</th>
+                        <th width="10">Pos</th>
+                        <th>Cosapyl</th>
+
+
+                        <th>Pçs</th>
+                        <th>Peso</th>
+                        <th>Maior</th>
+                        <th width="10">Pos</th>
+                        <th>Cosapyl</th>
+                        <% } %>
+
+                    </tr>
+
+            <%  categoriaAnterior = data[i].categoria;
+                posicaoGeral = 1;
+            }%>
+            <tr>
+                <td align="center"><%=posicaoGeral++%>&#176;</td>
+                <td><%=data[i].nome_equipe%></td>
+                <td id="title"><%=data[i].atleta_id%></td>
+                <td id="title"><%=data[i].nome_atleta%></td>
+
+                <td align="center"><%=data[i].lance_1_real%></td>
+                <td align="center"><%=data[i].lance_2_real%></td>
+                <td align="center"><%=data[i].lance_3_real%></td>
+                <td align="center"><%=(data[i].lance_1 + data[i].lance_2 + data[i].lance_3).toFixed(2)%></td>
+                <td align="center"><%=data[i].posicao_lancamento%>&#176;</td>
+                <td align="center"><%=data[i].cosapyl_lancamento.toFixed(4)%></td>
+
+                <% if (data[i].categoria != 5) {%>
+
+                    <td align="center"><%=(data[i].total_pecas_variada && data[i].total_pecas_variada.toFixed(2))%></td>
+                    <td align="center"><%=(data[i].peso_total_variada && data[i].peso_total_variada.toFixed(2))%></td>
+                    <td align="center"><%=(data[i].maior_peca_variada && data[i].maior_peca_variada.toFixed(2))%></td>
+                    <td align="center"><%=data[i].posicao_variada%>&#176;</td>
+                    <td align="center"><%=(data[i].cosapyl_variada && data[i].cosapyl_variada.toFixed(4))%></td>
+
+                    <td align="center"><%=(data[i].total_pecas_especifica && data[i].total_pecas_especifica.toFixed(2))%></td>
+                    <td align="center"><%=(data[i].peso_total_especifica && data[i].peso_total_especifica.toFixed(2))%></td>
+                    <td align="center"><%=(data[i].maior_peca_especifica && data[i].maior_peca_especifica.toFixed(2))%></td>
+                    <td align="center"><%=data[i].posicao_especifica%>&#176;</td>
+                    <td align="center"><%=(data[i].cosapyl_especifica && data[i].cosapyl_especifica.toFixed(4))%></td>
+
+                    <td align="center"><%=data[i].total_cosapyl%></td>
+                <%}%>
+            </tr>
+        <%  if (((i+1) >= data.length) || (data[i+1].categoria != categoriaAnterior)) {
+                %></table><%
+            }
+        } %>
+        <script>
+            var allRows = $("tr");
+            $("input#search").on("keydown keyup", function() {
+                allRows.hide();
+                $("tr:contains('" + $(this).val() + "')").show();
+            });
+
+        </script>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
