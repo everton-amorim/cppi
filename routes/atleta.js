@@ -163,7 +163,7 @@ router.get('/monta-numero',function(req,res) {
             c.connection.query(query2);
         });
 
-        res.render('atleta/lista', {page_title: "Edição Provas", data: rows});
+        res.redirect('/atletas/prova');
 
     });
 });
