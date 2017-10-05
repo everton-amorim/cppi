@@ -630,7 +630,7 @@ router.post('/print/lancamento', (req,res) => {
             }
 
             doc.font('fonts/PalatinoBold.ttf').fontSize(12).text(`${row.sorteio_lancamento}`, 20 , textY);
-            doc.font('fonts/PalatinoBold.ttf').fontSize(12).text(`${row.atleta_id} - ${row.nome} - ${row.nome_equipe}`, 50 , textY);
+            doc.font('fonts/PalatinoBold.ttf').fontSize(12).text(`${(row.nome + ' - ' + row.nome_equipe).substring(0,50)}`, 50 , textY);
             doc.save().moveTo(10, textY+20).lineTo(600, textY+20).fill("#000000");
 
             textY = textY+30;
