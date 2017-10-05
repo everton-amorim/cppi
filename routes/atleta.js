@@ -148,7 +148,7 @@ router.get('/prova',function(req,res) {
 });
 
 
-router.get('/monta-numero',function(req,res) {
+router.post('/monta-numero',function(req,res) {
 
     var query = `SELECT * from Atleta ORDER BY categoria, nome`
     c.connection.query(query, function (err, rows) {
