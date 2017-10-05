@@ -150,7 +150,7 @@ router.get('/prova',function(req,res) {
 
 router.post('/monta-numero',function(req,res) {
 
-    var query = `SELECT * from Atleta ORDER BY categoria, nome`
+    var query = `SELECT * from Atleta ORDER BY categoria, equipe_id, nome`
     c.connection.query(query, function (err, rows) {
 
         if (err)
