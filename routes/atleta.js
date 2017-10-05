@@ -31,6 +31,7 @@ router.post('/add', function(req,res){
 
     var data = {
 
+        id: 0,
         nome    : input.nome,
         endereco : input.endereco,
         categoria   : input.categoria,
