@@ -10,9 +10,11 @@
                 <th>Nome</th>
             </tr>
 
-            <% if(data){
+            <% var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+            var qtdeCategoria = [0,0,0,0,0,0];
 
-                var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+            if(data){
+
 
             for(var i = 0;i < data.length;i++) { %>
 
@@ -22,8 +24,7 @@
                 <td><%=data[i].nome_equipe%></td>
                 <td><%=data[i].nome%></td>
             </tr>
-            <% }
-
+            <%  qtdeCategoria[data[i].categoria]++;
             }else{ %>
             <tr>
                 <td colspan="3">Sem Atletas</td>
@@ -32,6 +33,22 @@
 
 
 
+        </table>
+    </div>
+
+    <div class="data-table">
+        <table class="table table-striped">
+            <tr>
+                <th>Categoria</th>
+                <th>Qtde</th>
+            </tr>
+
+            <% for(var i = 0;i < options.length;i++) { %>
+            <tr>
+                <td><%=options[i]%></td>
+                <td><%=qtdeCategoria[i]%></td>
+            </tr>
+            }%>
         </table>
     </div>
 </div>
