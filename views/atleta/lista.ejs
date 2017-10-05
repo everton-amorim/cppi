@@ -13,9 +13,6 @@
             <% var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
             var qtdeCategoria = [0,0,0,0,0,0];
 
-            if(data){
-
-
             for(var i = 0;i < data.length;i++) { %>
 
             <tr>
@@ -25,11 +22,7 @@
                 <td><%=data[i].nome%></td>
             </tr>
             <%  qtdeCategoria[data[i].categoria]++;
-            }else{ %>
-            <tr>
-                <td colspan="3">Sem Atletas</td>
-            </tr>
-            <% } %>
+            } %>
 
 
 
