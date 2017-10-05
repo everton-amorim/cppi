@@ -10,10 +10,15 @@
                 <th>Nome</th>
             </tr>
 
-            <% var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
-            var qtdeCategoria = [0,0,0,0,0,0];
+            <% if(data){
 
-            for(var i = 0;i < data.length;i++) { %>
+                var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+                var quantidade = [0,0,0,0,0,0];
+
+
+
+            for(var i = 0;i < data.length;i++) {
+                quantidade[data[i].categoria]++%>
 
             <tr>
                 <td><%=data[i].id%></td>
@@ -21,27 +26,24 @@
                 <td><%=data[i].nome_equipe%></td>
                 <td><%=data[i].nome%></td>
             </tr>
-            <%  qtdeCategoria[data[i].categoria]++;
-            } %>
+            <% }
 
-
-
-        </table>
-    </div>
-
-    <div class="data-table">
-        <table class="table table-striped">
-            <tr>
-                <th>Categoria</th>
-                <th>Qtde</th>
-            </tr>
-
-            <% for(var i = 0;i < options.length;i++) { %>
+            for(var i = 0;i < options.length;i++) { %>
             <tr>
                 <td><%=options[i]%></td>
-                <td><%=qtdeCategoria[i]%></td>
+                <td><%=quantidade[i]%></td>
             </tr>
-            }%>
+            <% }
+
+
+            }else{ %>
+            <tr>
+                <td colspan="3">Sem Atletas</td>
+            </tr>
+            <% } %>
+
+
+
         </table>
     </div>
 </div>
