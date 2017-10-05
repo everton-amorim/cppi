@@ -104,10 +104,10 @@ function calculaPontos(pecas,peso,campo) {
 }
 
 function calculaTotalLance(id) {
-    document.getElementById('lance_1_'+id).value = document.getElementById('lance_1_'+id).value.replace(/,/g,'.');
+    /*document.getElementById('lance_1_'+id).value = document.getElementById('lance_1_'+id).value.replace(/,/g,'.');
     document.getElementById('lance_2_'+id).value = document.getElementById('lance_2_'+id).value.replace(/,/g,'.');
     document.getElementById('lance_3_'+id).value = document.getElementById('lance_3_'+id).value.replace(/,/g,'.');
-
+*/
     var lance1 = isNaN(parseFloat(document.getElementById('lance_1_'+id).value))?0:parseFloat(document.getElementById('lance_1_'+id).value);
     var lance2 = isNaN(parseFloat(document.getElementById('lance_2_'+id).value))?0:parseFloat(document.getElementById('lance_2_'+id).value);
     var lance3 = isNaN(parseFloat(document.getElementById('lance_3_'+id).value))?0:parseFloat(document.getElementById('lance_3_'+id).value);
