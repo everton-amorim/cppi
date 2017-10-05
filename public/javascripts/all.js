@@ -45,12 +45,7 @@ function printLancamento() {
 }
 
 function montaNumero() {
-
-    loadXMLDoc('/atleta/monta-numero');
-
-    setTimeout(() => {
-        window.location.href = "/atleta/prova";
-    },2000);
+    loadXMLDoc('/atletas/monta-numero');
 }
 
 
