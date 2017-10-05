@@ -29,12 +29,13 @@ CREATE TABLE `Equipe` (
 DROP TABLE IF EXISTS `Atleta`;
 
 CREATE TABLE `Atleta` (
-  `id` INTEGER(4) NOT NULL AUTO_INCREMENT,
+  `unique_id` INTEGER(4) NOT NULL AUTO_INCREMENT,
+  `id` INTEGER(4) DEFAULT 0,
   `equipe_id` INTEGER(3) NOT NULL,
   `nome` VARCHAR(300) NULL DEFAULT NULL,
   `endereco` VARCHAR(300) NULL DEFAULT NULL,
   `categoria` INTEGER NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`unique_id`)
 );
 
 -- ---

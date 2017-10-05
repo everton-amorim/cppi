@@ -147,6 +147,27 @@ router.get('/prova',function(req,res) {
     });
 });
 
+
+router.get('/monta-numero',function(req,res) {
+
+    var query = `SELECT * from Atleta ORDER BY categoria, nome`
+    c.connection.query(query, function (err, rows) {
+
+        if (err)
+            console.log("Error Selecting : %s ", err);
+
+        let numId = 1;
+
+        rows.forEach((row) => {
+            let query2 = `UPDATE Atleta SET id = ${numId++} WHERE unique_id = ${row.unique_id}`;
+            c.connection.query(query2);
+        });
+
+        res.render('atleta/lista', {page_title: "Edição Provas", data: rows});
+
+    });
+});
+
 let confirmacao = (input) => {
     var data = {
         atleta_id : input.atleta_id,
