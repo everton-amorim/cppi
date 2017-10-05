@@ -91,7 +91,9 @@ function state_Change()
 
 function registro_valor(field, value,id) {
 
-    loadXMLDoc('/apuracao/registro?field='+field+'&value='+value+'&id='+id);
+    var valor = value.replaceAll('/,/g','.');
+
+    loadXMLDoc('/apuracao/registro?field='+field+'&value='+valor+'&id='+id);
 
 }
 
