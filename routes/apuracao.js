@@ -928,6 +928,7 @@ let buscaMaiorTiro = (categoria, callback) => {
     let query = `SELECT MAX(LANCE_1) LANCE1
                       , MAX(LANCE_2) LANCE2
                       , MAX(LANCE_3) LANCE3
+                      , a.id id
                         FROM Participantes p
                          , Equipe e
                          , Atleta a
@@ -951,6 +952,7 @@ let buscaMaiorTiro = (categoria, callback) => {
                          , Atleta a
                      WHERE a.equipe_id = e.id
                         AND p.atleta_id = a.id
+                        AND p.atleta_ID = ${row.id}
                         AND (LANCE_1 = ${maior}
                         OR LANCE_2 = ${maior}
                         OR LANCE_3 = ${maior})`;
