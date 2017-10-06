@@ -93,7 +93,7 @@ function registro_valor(field, value,id) {
 
     //var valor = value.replace(/,/g,'.');
 
-    loadXMLDoc('/apuracao/registro?field='+field+'&value='+valor+'&id='+id);
+    loadXMLDoc('/apuracao/registro?field='+field+'&value='+value+'&id='+id);
 
 }
 
