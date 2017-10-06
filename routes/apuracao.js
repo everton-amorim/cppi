@@ -50,8 +50,8 @@ router.get('/calc/', (req, res) => {
 
 let apuracao_lancamento = (categoria, callback) => {
 
-    let query = `SELECT (p.lance_1 + p.lance_2 + p.lance_3) total_lancamento
-                 , GREATEST(p.lance_1,p.lance_2,p.lance_3) maior_lance
+    let query = `SELECT (IFNULL(p.lance_1,0) + IFNULL(p.lance_2,0) + IFNULL(p.lance_3,0)) total_lancamento
+                 , GREATEST(IFNULL(p.lance_1,0), IFNULL(p.lance_2,0), IFNULL(p.lance_3,0)) maior_lance
                  , p.id
                  , a.id atleta_id
               FROM Participantes p
