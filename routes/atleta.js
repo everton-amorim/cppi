@@ -34,13 +34,10 @@ router.post('/add', function(req,res){
     c.connection.query('SELECT (MAX(id)+1) newId from Atleta a',function(err,row) {
         console.log('MAX:'+JSON.stringify(row));
         var data = {
-
             id: row.newId,
-            nome    : input.nome,
-            endereco : input.endereco,
-            categoria   : input.categoria,
-            equipe_id  : input.equipe_id
-
+            nome: input.nome,
+            categoria: input.categoria,
+            equipe_id: input.equipe_id
         };
         console.log('INSERTING ATLETA:'+JSON.stringify(data));
 
