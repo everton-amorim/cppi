@@ -31,25 +31,29 @@ router.post('/add', function(req,res){
 
     console.log(input);
 
-    var data = {
+    c.connection.query('SELECT MAX(id) max from Atleta a',function(err,row) {
+        var data = {
 
-        id: 0,
-        nome    : input.nome,
-        endereco : input.endereco,
-        categoria   : input.categoria,
-        equipe_id  : input.equipe_id
+            id: row.max+1,
+            nome    : input.nome,
+            endereco : input.endereco,
+            categoria   : input.categoria,
+            equipe_id  : input.equipe_id
 
-    };
+        };
 
-    var query = c.connection.query("INSERT INTO Atleta set ? ",data, function(err, rows)
-    {
+        var query = c.connection.query("INSERT INTO Atleta set ? ",data, function(err, rows)
+        {
 
-      if (err)
-        console.log("Error inserting : %s ",err );
+            if (err)
+                console.log("Error inserting : %s ",err );
 
-      res.redirect('/equipes/edit/'+input.equipe_id);
+            res.redirect('/equipes/edit/'+input.equipe_id);
 
+        });
     });
+
+
 
      //console.log(query.sql);// get raw query
 
