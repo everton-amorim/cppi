@@ -32,6 +32,7 @@ router.post('/add', function(req,res){
     console.log(input);
 
     c.connection.query('SELECT MAX(id) max from Atleta a',function(err,row) {
+        console.log('MAX:'+JSON.stringify(row));
         var data = {
 
             id: row.max+1,
