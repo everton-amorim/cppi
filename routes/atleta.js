@@ -37,7 +37,7 @@ router.post('/add', function(req,res){
             nome: input.nome,
             categoria: input.categoria,
             equipe_id: input.equipe_id,
-            id: row.newId
+            id: row[0].newId
         };
         console.log('INSERTING ATLETA:'+JSON.stringify(data));
 
