@@ -29,19 +29,20 @@ router.post('/add', function(req,res){
 
     var input = JSON.parse(JSON.stringify(req.body));
 
-    console.log(input);
+    console.log('TO ADD:'+input);
 
-    c.connection.query('SELECT MAX(id) max from Atleta a',function(err,row) {
+    c.connection.query('SELECT (MAX(id)+1) newId from Atleta a',function(err,row) {
         console.log('MAX:'+JSON.stringify(row));
         var data = {
 
-            id: row.max+1,
+            id: row.newId,
             nome    : input.nome,
             endereco : input.endereco,
             categoria   : input.categoria,
             equipe_id  : input.equipe_id
 
         };
+        console.log('INSERTING ATLETA:'+JSON.stringify(data));
 
         var query = c.connection.query("INSERT INTO Atleta set ? ",data, function(err, rows)
         {
