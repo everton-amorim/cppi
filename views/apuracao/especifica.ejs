@@ -40,7 +40,7 @@
                     <td><input type="text" style="width: 100px" id="total_pecas_especifica_<%=data[i].id%>" value="<%=data[i].total_pecas_especifica%>" onchange="registro_valor('total_pecas_especifica',document.getElementById('total_pecas_especifica_<%=data[i].id%>').value,<%=data[i].id%>);calculaPontos(document.getElementById('total_pecas_especifica_<%=data[i].id%>').value,document.getElementById('peso_total_especifica_<%=data[i].id%>').value,'pontos<%=data[i].id%>');"></td>
                     <td><input type="text" style="width: 100px" id="peso_total_especifica_<%=data[i].id%>" value="<%=data[i].peso_total_especifica%>" onchange="registro_valor('peso_total_especifica',document.getElementById('peso_total_especifica_<%=data[i].id%>').value,<%=data[i].id%>);calculaPontos(document.getElementById('total_pecas_especifica_<%=data[i].id%>').value,document.getElementById('peso_total_especifica_<%=data[i].id%>').value,'pontos<%=data[i].id%>');"></td>
                     <td><input type="text" style="width: 100px" id="maior_peca_especifica_<%=data[i].id%>" value="<%=data[i].maior_peca_especifica%>" onchange="registro_valor('maior_peca_especifica',document.getElementById('maior_peca_especifica_<%=data[i].id%>').value,<%=data[i].id%>)"></td>
-                    <td><input type="text" style="width: 100px" readonly="true" id="pontos<%=data[i].id%>" value="<%=pontos.toFixed(0)%>"></td>
+                    <td><input type="text" style="width: 100px" readonly="true" id="pontos<%=data[i].id%>" value="<%=pontos%>"></td>
                     <td><%=(pontos==0?'-':data[i].posicao_especifica)%></td>
                 </tr>
                 <% }

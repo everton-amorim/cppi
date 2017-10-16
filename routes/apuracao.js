@@ -163,7 +163,7 @@ let resultado = (callback) => {
                          , e.nome nome_equipe
                          , a.nome nome_atleta
                          , a.categoria categoria
-                         , (p.cosapyl_lancamento + p.cosapyl_variada + p.cosapyl_especifica) total_cosapyl
+                         , (IFNULL(p.cosapyl_lancamento,0) + IFNULL(p.cosapyl_variada,0) + IFNULL(p.cosapyl_especifica,0)) total_cosapyl
                          , a.id atleta_id
                          FROM Participantes p
                          , Equipe e
