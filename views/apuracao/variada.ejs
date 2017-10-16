@@ -28,7 +28,8 @@
 
                     var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
 
-                for(var i = 0;i < data.length;i++) { %>
+                for(var i = 0;i < data.length;i++) {
+                    var pontos = ((data[i].total_pecas_variada*2)+Math.ceil(data[i].peso_total_variada/1000 * 10)).toFixed(0)%>
 
                 <tr>
                     <td><%=options[data[i].categoria]%></td>
@@ -38,8 +39,8 @@
                     <td><input type="text" style="width: 100px" id="total_pecas_variada_<%=data[i].id%>" value="<%=data[i].total_pecas_variada%>" onchange="registro_valor('total_pecas_variada',document.getElementById('total_pecas_variada_<%=data[i].id%>').value,<%=data[i].id%>);calculaPontos(document.getElementById('total_pecas_variada_<%=data[i].id%>').value,document.getElementById('peso_total_variada_<%=data[i].id%>').value,'pontos<%=data[i].id%>');"></td>
                     <td><input type="text" style="width: 100px" id="peso_total_variada_<%=data[i].id%>" value="<%=data[i].peso_total_variada%>" onchange="registro_valor('peso_total_variada',document.getElementById('peso_total_variada_<%=data[i].id%>').value,<%=data[i].id%>);calculaPontos(document.getElementById('total_pecas_variada_<%=data[i].id%>').value,document.getElementById('peso_total_variada_<%=data[i].id%>').value,'pontos<%=data[i].id%>');"></td>
                     <td><input type="text" style="width: 100px" id="maior_peca_variada_<%=data[i].id%>" value="<%=data[i].maior_peca_variada%>" onchange="registro_valor('maior_peca_variada',document.getElementById('maior_peca_variada_<%=data[i].id%>').value,<%=data[i].id%>)"></td>
-                    <td><input type="text" style="width: 100px" readonly="true" id="pontos<%=data[i].id%>" value="<%=((data[i].total_pecas_variada*2)+Math.ceil(data[i].peso_total_variada/1000 * 10)).toFixed(0)%>"></td>
-                    <td><%=data[i].posicao_variada%></td>
+                    <td><input type="text" style="width: 100px" readonly="true" id="pontos<%=data[i].id%>" value="<%=pontos.toFixed(0)%>"></td>
+                    <td><%=(pontos==0?'-':data[i].posicao_variada)%></td>
                 </tr>
                 <% }
 

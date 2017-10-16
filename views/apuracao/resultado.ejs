@@ -105,21 +105,21 @@
                 <td align="center"><%=data[i].lance_2_real%></td>
                 <td align="center"><%=data[i].lance_3_real%></td>
                 <td align="center"><%=(data[i].lance_1 + data[i].lance_2 + data[i].lance_3).toFixed(2)%></td>
-                <td align="center"><%=data[i].posicao_lancamento%>&#176;</td>
+                <td align="center"><%=((data[i].cosapyl_lancamento && data[i].cosapyl_lancamento.toFixed(0)==0)?'-':data[i].posicao_lancamento)%>&#176;</td>
                 <td align="center"><%=data[i].cosapyl_lancamento.toFixed(4)%></td>
 
                 <% if (data[i].categoria != 5) {%>
 
-                    <td align="center"><%=(data[i].total_pecas_variada && data[i].total_pecas_variada.toFixed(1))%></td>
+                    <td align="center"><%=(data[i].total_pecas_variada && data[i].total_pecas_variada.toFixed(0))%></td>
                     <td align="center"><%=(data[i].peso_total_variada && data[i].peso_total_variada.toFixed(0))%></td>
                     <td align="center"><%=(data[i].maior_peca_variada && data[i].maior_peca_variada.toFixed(0))%></td>
-                    <td align="center"><%=data[i].posicao_variada%>&#176;</td>
+                    <td align="center"><%=((data[i].cosapyl_variada && data[i].cosapyl_variada.toFixed(0)==0)?'-':data[i].posicao_variada)%>&#176;</td>
                     <td align="center"><%=(data[i].cosapyl_variada && data[i].cosapyl_variada.toFixed(4))%></td>
 
-                    <td align="center"><%=(data[i].total_pecas_especifica && data[i].total_pecas_especifica.toFixed(1))%></td>
+                    <td align="center"><%=(data[i].total_pecas_especifica && data[i].total_pecas_especifica.toFixed(0))%></td>
                     <td align="center"><%=(data[i].peso_total_especifica && data[i].peso_total_especifica.toFixed(0))%></td>
                     <td align="center"><%=(data[i].maior_peca_especifica && data[i].maior_peca_especifica.toFixed(0))%></td>
-                    <td align="center"><%=data[i].posicao_especifica%>&#176;</td>
+                    <td align="center"><%=((data[i].cosapyl_especifica && data[i].cosapyl_especifica.toFixed(0) == 0)?'-':data[i].posicao_especifica)%>&#176;</td>
                     <td align="center"><%=(data[i].cosapyl_especifica && data[i].cosapyl_especifica.toFixed(4))%></td>
 
                     <td align="center"><%=data[i].total_cosapyl%></td>
