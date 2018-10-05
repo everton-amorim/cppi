@@ -129,7 +129,7 @@ router.post('/edit/:id',function(req,res){
 
 router.get('/prova',function(req,res) {
 
-    var query = `SELECT a.*, e.nome as nome_equipe from Atleta a, Equipe e WHERE a.equipe_id = e.id ORDER BY a.id`
+    var query = `SELECT a.*, e.nome as nome_equipe from Atleta a, Equipe e WHERE a.equipe_id = e.id ORDER BY nome_equipe, nome`
     c.connection.query(query, function (err, rows) {
 
         if (err)
