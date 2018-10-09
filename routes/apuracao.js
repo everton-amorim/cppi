@@ -424,37 +424,21 @@ router.get('/numeroSaco',(req,res) => {
 });
 
 let setSaco = (categoria, sacoInicio, callback) => {
+    let numSaco = sacoInicio;
 
     let query = `SELECT a.nome as nome, e.nome as nome_equipe, a.unique_id atleta_id FROM Atleta a, Equipe e WHERE a.equipe_id = e.id AND a.categoria = ${categoria} ORDER BY nome_equipe, nome`;
 
     c.connection.query(query , (err, rows) => {
         if (rows && rows.length) {
-            let numSaco = sacoInicio;
-
             rows.forEach((row) => {
-                gravaSaco(numSaco,row.atleta_id, (ok) => {
-                    numSaco++;
-                });
+                let query2 = `UPDATE Atleta SET id = '${ultimoNumero}' WHERE id = ${id}`;
+                c.connection.query(query2);
+                numSaco++;
             });
-
-            callback(numSaco);
-        } else {
-            callback(sacoInicio);
         }
+        callback(numSaco);
     });
 };
-
-let gravaSaco = (ultimoNumero, id, callback) => {
-    var query = `UPDATE Atleta SET id = '${ultimoNumero}' WHERE id = ${id}`;
-
-    c.connection.query(query, function(err, rows)
-    {
-        if (err)
-            console.log("Error deleting : %s ",err );
-
-        callback('ok');
-    });
-}
 
 let registro = (field, value, id) => {
     var data = {
