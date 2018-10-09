@@ -303,7 +303,7 @@ router.get('/lancamento',(req,res) => {
 
 router.get('/sorteio', (req,res) => {
 
-    var query = `SELECT a.nome as nome, a.categoria as categoria, e.nome as nome_equipe, p.*, a.id atleta_id FROM Atleta a, Equipe e, Participantes p WHERE p.atleta_id = a.id AND a.equipe_id = e.id ORDER BY atleta_id`
+    var query = `SELECT a.nome as nome, a.categoria as categoria, e.nome as nome_equipe, p.*, a.id atleta_id FROM Atleta a, Equipe e, Participantes p WHERE p.atleta_id = a.id AND a.equipe_id = e.id ORDER BY p.atleta_id`
     c.connection.query(query, (err, rows) => {
 
         if (err)
