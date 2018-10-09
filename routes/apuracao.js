@@ -408,7 +408,7 @@ router.post('/registro', (req, res) => {
     res.end();
 });
 
-router.get('/numeroSaco',(req,res) => {
+router.post('/numeroSaco',(req,res) => {
 
     setSaco(categoria.masculino,1,(inicioSenior) => {
         setSaco(categoria.feminino,inicioSenior,(inicioMaster) => {
