@@ -14,6 +14,17 @@ function confirmacao(atleta_id, equipe_id,id) {
 
 }
 
+function printLancamento() {
+
+    loadXMLDoc('/apuracao/numeroSaco');
+
+    setTimeout(() => {
+        window.location.href = "/apuracao/sorteio";
+    },2000);
+
+}
+
+
 function sorteio() {
 
     loadXMLDoc('/apuracao/sorteio');
