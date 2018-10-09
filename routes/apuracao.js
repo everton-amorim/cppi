@@ -431,11 +431,12 @@ let setSaco = (categoria, sacoInicio, callback) => {
         if (rows && rows.length) {
             let numSaco = sacoInicio;
 
-            for (let i=0;i<rows.length;i++) {
+            rows.forEach((row) => {
                 gravaSaco(numSaco,rows[i].atleta_id, (ok) => {
                     numSaco++;
                 });
-            }
+            });
+
             callback(numSaco);
         } else {
             callback(sacoInicio);
