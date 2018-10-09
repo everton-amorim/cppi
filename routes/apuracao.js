@@ -432,7 +432,7 @@ let setSaco = (categoria, sacoInicio, callback) => {
             let numSaco = sacoInicio;
 
             rows.forEach((row) => {
-                gravaSaco(numSaco,rows[i].atleta_id, (ok) => {
+                gravaSaco(numSaco,row.atleta_id, (ok) => {
                     numSaco++;
                 });
             });
