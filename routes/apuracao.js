@@ -425,7 +425,7 @@ router.get('/numeroSaco',(req,res) => {
 
 let setSaco = (categoria, sacoInicio, callback) => {
 
-    let query = `SELECT a.nome as nome, e.nome as nome_equipe, a.id atleta_id FROM Atleta a, Equipe e WHERE a.equipe_id = e.id AND a.categoria = ${categoria} ORDER BY nome_equipe, nome`;
+    let query = `SELECT a.nome as nome, e.nome as nome_equipe, a.unique_id atleta_id FROM Atleta a, Equipe e WHERE a.equipe_id = e.id AND a.categoria = ${categoria} ORDER BY nome_equipe, nome`;
 
     c.connection.query(query , (err, rows) => {
         if (rows && rows.length) {
