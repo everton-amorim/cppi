@@ -432,8 +432,9 @@ let setSaco = (categoria, sacoInicio, callback) => {
             let numSaco = sacoInicio;
 
             for (let i=0;i<rows.length;i++) {
-                gravaSaco(numSaco,rows[i].atleta_id);
-                numSaco++;
+                gravaSaco(numSaco,rows[i].atleta_id, (ok) => {
+                    numSaco++;
+                });
             }
             callback(numSaco);
         } else {
@@ -442,13 +443,15 @@ let setSaco = (categoria, sacoInicio, callback) => {
     });
 };
 
-let gravaSaco = (ultimoNumero, id) => {
+let gravaSaco = (ultimoNumero, id, callback) => {
     var query = `UPDATE Atleta SET id = '${ultimoNumero}' WHERE id = ${id}`;
 
     c.connection.query(query, function(err, rows)
     {
         if (err)
             console.log("Error deleting : %s ",err );
+
+        callback('ok');
     });
 }
 
