@@ -2,7 +2,7 @@
 
         <div class="page-data">
             
-            <form method="post" action="/atletas/edit/<%=data[0].id%>">
+            <form method="post" action="/atletas/edit/<%=data[0].unique_id%>">
                 <table cellpadding="11">
                 <tr>
                     <td class="label2">Nome</td><td>: <input type="text" name="nome" value="<%=data[0].nome%>" required></td>
@@ -41,6 +41,9 @@
                                 %>
                             </select>
                     </tr>
+                    <tr>
+                    <td class="label2">Saco</td><td>: <input type="text" name="id" value="<%=data[0].id%>" required></td>
+                 </tr>
                  <tr>
                     <td class="label"></td>
                     <td>

@@ -101,10 +101,10 @@ router.get('/edit/:id', function(req, res){
 
 });
 
-router.post('/edit/:id',function(req,res){
+router.post('/edit/:unique_id',function(req,res){
 
     var input = JSON.parse(JSON.stringify(req.body));
-    var id = req.params.id;
+    var unique_id = req.params.unique_id;
 
 
     var data = {
@@ -112,11 +112,11 @@ router.post('/edit/:id',function(req,res){
         nome    : input.nome,
         endereco : input.endereco,
         categoria   : input.categoria,
-        equipe_id  : input.equipe_id
-
+        equipe_id  : input.equipe_id,
+        id: input.id
     };
 
-    c.connection.query("UPDATE Atleta set ? WHERE id = ? ",[data,id], function(err, rows)
+    c.connection.query("UPDATE Atleta set ? WHERE unique_id = ? ",[data,unique_id], function(err, rows)
     {
 
       if (err)
