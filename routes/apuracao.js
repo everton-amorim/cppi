@@ -415,7 +415,9 @@ router.get('/numeroSaco',(req,res) => {
             setSaco(categoria.senior,inicioMaster,(inicioJuvenil) => {
                 setSaco(categoria.master,inicioJuvenil,(inicioFeminino) => {
                     setSaco(categoria.juvenil,inicioFeminino,(ultimaRaia) => {
-                        console.log('Ultima Raia Específica:'+ultimaRaia);
+                        setSaco(categoria.incentivado,ultimaRaia,(ultimaRaia2) => {
+                            console.log('Ultima Raia Específica:'+ultimaRaia2);
+                        });
                     });
                 });
             });
