@@ -303,7 +303,7 @@ router.get('/lancamento',(req,res) => {
 
 router.get('/sorteio', (req,res) => {
 
-    var query = `SELECT a.nome as nome, a.categoria as categoria, e.nome as nome_equipe, p.*, a.id atleta_id FROM Atleta a, Equipe e, Participantes p WHERE p.atleta_id = a.id AND a.equipe_id = e.id ORDER BY nome_equipe, a.categoria, nome`
+    var query = `SELECT a.nome as nome, a.categoria as categoria, e.nome as nome_equipe, p.*, a.id atleta_id FROM Atleta a, Equipe e, Participantes p WHERE p.atleta_id = a.id AND a.equipe_id = e.id ORDER BY atleta_id`
     c.connection.query(query, (err, rows) => {
 
         if (err)
@@ -407,6 +407,53 @@ router.post('/registro', (req, res) => {
 
     res.end();
 });
+
+router.get('/numeroSaco',(req,res) => {
+
+    setSaco(categoria.masculino,1,(inicioSenior) => {
+        setSaco(categoria.feminino,inicioSenior,(inicioMaster) => {
+            setSaco(categoria.senior,inicioMaster,(inicioJuvenil) => {
+                setSaco(categoria.master,inicioJuvenil,(inicioFeminino) => {
+                    setSaco(categoria.juvenil,inicioFeminino,(ultimaRaia) => {
+                        console.log('Ultima Raia Específica:'+ultimaRaia);
+
+                        res.render('apuracao/sorteio', {page_title: "Registro de Sorteio", data: rows});
+
+                    });
+                });
+            });
+        });
+    });
+});
+
+let setSaco = (categoria, sacoInicio, callback) => {
+
+    let query = `SELECT a.nome as nome, e.nome as nome_equipe, a.id atleta_id FROM Atleta a, Equipe e WHERE a.equipe_id = e.id AND a.categoria = ${categoria} ORDER BY nome_equipe, nome`;
+
+    c.connection.query(query , (err, rows) => {
+        if (rows && rows.length) {
+            let numSaco = sacoInicio;
+
+            for (let i=0;i<rows.length;i++) {
+                gravaSaco(numSaco,rows[i].atleta_id);
+                numSaco++;
+            }
+            callback(numSaco);
+        } else {
+            callback(sacoInicio);
+        }
+    });
+};
+
+let gravaSaco = (ultimoNumero, id) => {
+    var query = `UPDATE Atleta SET id = '${ultimoNumero}' WHERE id = ${id}`;
+
+    c.connection.query(query, function(err, rows)
+    {
+        if (err)
+            console.log("Error deleting : %s ",err );
+    });
+}
 
 let registro = (field, value, id) => {
     var data = {
