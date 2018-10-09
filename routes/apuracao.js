@@ -416,9 +416,6 @@ router.get('/numeroSaco',(req,res) => {
                 setSaco(categoria.master,inicioJuvenil,(inicioFeminino) => {
                     setSaco(categoria.juvenil,inicioFeminino,(ultimaRaia) => {
                         console.log('Ultima Raia Específica:'+ultimaRaia);
-
-                        res.render('apuracao/sorteio', {page_title: "Registro de Sorteio", data: rows});
-
                     });
                 });
             });
