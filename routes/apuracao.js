@@ -431,9 +431,8 @@ let setSaco = (categoria, sacoInicio, callback) => {
     c.connection.query(query , (err, rows) => {
         if (rows && rows.length) {
             rows.forEach((row) => {
-                let query2 = `UPDATE Atleta SET id = '${ultimoNumero}' WHERE id = ${id}`;
+                let query2 = `UPDATE Atleta SET id = '${numSaco++}' WHERE unique_id = ${row.atleta_id}`;
                 c.connection.query(query2);
-                numSaco++;
             });
         }
         callback(numSaco);
