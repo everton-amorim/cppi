@@ -14,7 +14,7 @@ function confirmacao(atleta_id, equipe_id,id) {
 
 }
 
-function printLancamento() {
+function ajustarSaco() {
 
     loadXMLDoc('/apuracao/numeroSaco');
 
