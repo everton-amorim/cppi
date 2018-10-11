@@ -153,6 +153,18 @@ router.get('/prova',function(req,res) {
     });
 });
 
+router.get('/ordenado',function(req,res) {
+
+    var query = `SELECT a.*, e.nome as nome_equipe from Atleta a, Equipe e WHERE a.equipe_id = e.id ORDER BY nome_equipe, categorai, nome`
+    c.connection.query(query, function (err, rows) {
+
+        if (err)
+            console.log("Error Selecting : %s ", err);
+
+        res.render('atleta/lista', {page_title: "Edição Provas", data: rows});
+
+    });
+});
 
 router.post('/monta-numero',function(req,res) {
 
