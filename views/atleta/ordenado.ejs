@@ -1,0 +1,39 @@
+<%- include ../layouts/header.ejs %>
+<div class="page-data">
+    <!--<input type="button" value="Gerar Numeração" onclick="montaNumero();"/>-->
+    <div class="data-table">
+        <table class="table table-striped">
+            <tr>
+                <th>Equipe</th>
+                <th>Categoria</th>
+                <th>Nome</th>
+            </tr>
+
+            <% if(data){
+
+                var options = ["Masculino","Feminino","Master","Sênior","Juvenil","Incentivado"];
+                var quantidade = [0,0,0,0,0,0];
+
+
+
+            for(var i = 0;i < data.length;i++) {
+                quantidade[data[i].categoria]++%>
+
+            <tr>
+                <td><%=data[i].nome_equipe%></td>
+                <td><%=options[data[i].categoria]%></td>
+                <td><%=data[i].nome%></td>
+            </tr>
+            <% }else{ %>
+            <tr>
+                <td colspan="3">Sem Atletas</td>
+            </tr>
+            <% } %>
+
+
+
+        </table>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
