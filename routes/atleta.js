@@ -161,7 +161,7 @@ router.get('/ordenado',function(req,res) {
         if (err)
             console.log("Error Selecting : %s ", err);
 
-        res.render('atleta/lista', {page_title: "Edição Provas", data: rows});
+        res.render('atleta/ordenado', {page_title: "Edição Provas", data: rows});
 
     });
 });
