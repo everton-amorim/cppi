@@ -1,6 +1,6 @@
+drop database pirates;
 create database pirates;
 
-CREATE USER 'piratas'@'localhost' IDENTIFIED BY 'piratasDaIlha@2016';
 
 GRANT ALL PRIVILEGES ON * . * TO 'piratas'@'localhost';
 

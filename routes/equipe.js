@@ -51,16 +51,22 @@ router.get('/delete/:id', function(req,res){
 
     var id = req.params.id;
 
-    c.connection.query("DELETE FROM Equipe  WHERE id = ? ",[id], (err) =>
+	c.connection.query('SELECT * FROM Atleta where equipe_id = ?',[id],function(err2,rows2)     {
+	    if (rows2 && rows2.lenght > 0) {
+                console.log("Não pode excluir equipe com atletas relacionados. ");
+	    } else {
+		c.connection.query("DELETE FROM Equipe  WHERE id = ? ",[id], (err) =>
     {
 
       if(err)
         console.log("Error deleting : %s ",err );
 
-      res.redirect('/equipes');
 
     });
+            }
 
+res.redirect('/equipes');
+        });
 });
 
 //edit customer route , get n post

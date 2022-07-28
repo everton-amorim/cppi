@@ -6,6 +6,6 @@ let cwd = fs.existsSync(defaultCwd) ? defaultCwd : './';
 
 module.exports = [{
     name: 'cppi',
-    script: './bin/www',
+    script: './www.js',
     cwd
 }];

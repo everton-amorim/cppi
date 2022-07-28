@@ -71,7 +71,7 @@ router.get('/delete/:id/:equipe', function(req,res){
 
       res.redirect('/equipes/edit/'+req.params.equipe);
 
-    });
+   });
 
 });
 
